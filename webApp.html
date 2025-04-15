@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dad Joke Simulator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #f9f9f9, #e0f7fa);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    #joke-card {
+      background-color: white;
+      padding: 30px 40px;
+      margin-top: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      transition: all 0.3s ease-in-out;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    #joke-card.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #joke {
+      font-size: 1.4em;
+      color: #555;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin-top: 15px;
+      font-size: 1em;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .back-button {
+      margin-top: 40px;
+      background-color: #6c757d;
+    }
+
+    .back-button:hover {
+      background-color: #495057;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="prompt">Click the button to hear a dad joke!</h1>
+  <button onclick="getDadJoke()">Tell Me a Joke</button>
+
+  <div id="joke-card">
+    <div id="joke"></div>
+  </div>
+
+  <a href="scratch.html">
+    <button class="back-button">⬅ Back to Home</button>
+  </a>
+
+  <script>
+    const jokes = [
+      "Why don't eggs tell jokes? Because they'd crack each other up.",
+      "I'm afraid for the calendar. Its days are numbered.",
+      "What do you call a factory that makes okay products? A satisfactory.",
+      "Why did the scarecrow win an award? Because he was outstanding in his field!",
+      "I only know 25 letters of the alphabet. I don't know y.",
+      "I used to be addicted to the hokey pokey, but then I turned myself around.",
+      "Did you hear the rumor about butter? Well, I'm not going to spread it.",
+      "I asked my dog what's two minus two. He said nothing.",
+      "I would tell you a joke about construction, but I’m still working on it.",
+      "What do you call cheese that isn't yours? Nacho cheese.",
+      "I don't trust stairs — they're always up to something.",
+      "Why can't you hear a pterodactyl go to the bathroom? Because the 'P' is silent.",
+      "I'm reading a book on anti-gravity. It's impossible to put down!",
+      "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+      "How do you make holy water? You boil the hell out of it.",
+      "Why did the math book look sad? Because it had too many problems.",
+      "What did the janitor say when he jumped out of the closet? Supplies!",
+      "I'm on a seafood diet. I see food and I eat it.",
+      "Why did the coffee file a police report? It got mugged.",
+      "Two goldfish are in a tank. One turns to the other and says, 'Do you know how to drive this thing?'"
+    ];
+
+    function getDadJoke() {
+      const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+      const jokeCard = document.getElementById("joke-card");
+      document.getElementById("joke").textContent = randomJoke;
+      document.getElementById("prompt").textContent = "Click the button to hear another!";
+      
+      // Animate joke card
+      jokeCard.classList.remove("show");
+      void jokeCard.offsetWidth; // trigger reflow
+      jokeCard.classList.add("show");
+    }
+  </script>
+
+</body>
+</html>
